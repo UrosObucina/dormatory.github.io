@@ -12,7 +12,7 @@ class RoomController extends Controller
     {
         $room = new Room();
         $room->insertRoom();
-        return 'usao';
+        //return 'usao';
     }
     public function getRoom()
     {
