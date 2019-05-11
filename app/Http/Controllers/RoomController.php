@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     // update moze da se uradi ali kakav razmotriti jos!!
+
+    public function insertRoomFloor()
+    {
+        $room = new Room();
+        $room->insertRoomFloor();
+        //return 'usao';
+    }
     public function insertRoom()
     {
         $room = new Room();
         $room->insertRoom();
-        //return 'usao';
     }
     public function getRoom()
     {

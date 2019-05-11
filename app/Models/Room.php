@@ -24,11 +24,17 @@ class Room extends Model
 //    {
 //        return $this->hasOne("App\Models\Floor");
 //    }
-    public function insertRoom()
+    public function insertRoomFloor()
     {
         $floor = Floor::findOrFail(1);
         $rooms = new Room(['room_number'=>'24','id_User'=>'0']);
         $floor->roomFloor()->save($rooms);
+        return "uspeo";
+    }
+    public function insertRoom()
+    {
+        // unos u bazu bez ikakvih veza
+        $rooms = Room::create(['room_number'=>'33','id_Floor'=>'2','id_User'=>'0']);
         return "uspeo";
     }
     public function getRoom()
