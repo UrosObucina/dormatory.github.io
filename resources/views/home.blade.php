@@ -5,4 +5,7 @@
  * Date: 16-Mar-19
  * Time: 7:16 PM
  */
-echo "Zdravo";
+
+@if($u)
+    echo "Zdravo";
+@endif

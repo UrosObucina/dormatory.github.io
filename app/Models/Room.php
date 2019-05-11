@@ -37,4 +37,9 @@ class Room extends Model
         $floor->roomFloor;
         dd($floor->roomFloor);
     }
+    public function deleteRoom()
+    {
+        Room::where('id_Room',2)->delete();
+        return 'izbrisan je user';
+    }
 }

@@ -25,4 +25,5 @@ Route::get('/insert/user/room', 'UserController@insertUserRoom');
 Route::get('/update/user/room', 'UserController@updateUserRoom');
 Route::get('/insert/floor/room', 'RoomController@insertRoom');
 Route::get('/get/floor/room', 'RoomController@getRoom');
+Route::get('/delete/room', 'RoomController@deleteRoom');
 Route::post('/insert/users/', 'UserController@insert');
