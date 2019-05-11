@@ -7,8 +7,38 @@ use Illuminate\Database\Eloquent\Model;
 class Block extends Model
 {
     //
+    protected $primaryKey = "id_Block";
+
+    protected $table = 'blocks';
+
+    const UPDATED_AT = null;
+    const CREATED_AT = null;
+
+    protected $fillable = ['block_Name'];
+
     public function blockFloors()
     {
-        return $this->hasMany('App\Models\Floor');
+        return $this->hasMany('App\Models\Floor','id_Block');
     }
+    public function insertBlock()
+    {
+        Block::create(['block_Name'=>'Paviljon II']);
+    }
+    public function insertBlockFloors()
+    {
+        $block = Block::findOrFail(1);
+        $floor = new Floor(['floor_number'=>'2']);
+        $block->blockFloors()->save($floor);
+    }
+    public function updateBlock()
+    {
+        $block = Block::where($this->primaryKey,1)->first();
+        $block->block_Name = 'Paviljon II';
+        $block->save();
+    }
+    public function deleteBlock()
+    {
+        Block::where($this->primaryKey,2)->delete();
+    }
+
 }

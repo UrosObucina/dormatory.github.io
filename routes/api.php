@@ -27,4 +27,8 @@ Route::get('/insert/floor/room', 'RoomController@insertRoomFloor');
 Route::get('/insert/room', 'RoomController@insertRoom');
 Route::get('/get/floor/room', 'RoomController@getRoom');
 Route::get('/delete/room', 'RoomController@deleteRoom');
+Route::get('/insert/block', 'BlockController@insertBlock');
+Route::get('/update/block', 'BlockController@updateBlock');
+Route::get('/delete/block', 'BlockController@deleteBlock');
+Route::get('/insert/block/floors', 'BlockController@insertBlockFloors');
 Route::post('/insert/users/', 'UserController@insert');
