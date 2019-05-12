@@ -14,7 +14,7 @@ class Floor extends Model
     const UPDATED_AT = null;
     const CREATED_AT = null;
 
-    protected $fillable = ['floor_number'];
+    protected $fillable = ['floor_number','id_Block'];
 
     public function roomFloor()
     {
@@ -27,5 +27,13 @@ class Floor extends Model
     public function deleteFloor()
     {
         // ispitati da li na spratu postoji soba, ako ne moze da izbrise sprat
+        // ako sprat ima sobe
+        // izbrisati samo veze, ako se iszbrise sprat => sobama kojima je taj sprad dodeljen unsetuje se vrednst id_Floor na 0
+        $roomsOnFloor = Room::where("id_Floor",1)->get();
+        $roomsOnFloor;
+        if(isset($roomsOnFloor))
+        {
+            return 'ima soba, nemoj da brises';
+        }
     }
 }
