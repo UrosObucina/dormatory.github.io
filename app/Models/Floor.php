@@ -30,10 +30,10 @@ class Floor extends Model
         // ako sprat ima sobe
         // izbrisati samo veze, ako se iszbrise sprat => sobama kojima je taj sprad dodeljen unsetuje se vrednst id_Floor na 0
         $roomsOnFloor = Room::where("id_Floor",1)->get();
-        $roomsOnFloor;
-        if(isset($roomsOnFloor))
-        {
-            return 'ima soba, nemoj da brises';
-        }
+        dd($roomsOnFloor);
+//        if(isset($roomsOnFloor))
+//        {
+//            return 'ima soba, nemoj da brises';
+//        }
     }
 }
