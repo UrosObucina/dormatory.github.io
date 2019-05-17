@@ -14,26 +14,36 @@ class Floor extends Model
     const UPDATED_AT = null;
     const CREATED_AT = null;
 
-    protected $fillable = ['floor_number','id_Block'];
+    protected $fillable = ['floor_number', 'id_Block'];
 
     public function roomFloor()
     {
         return $this->hasMany('App\Models\Room', "id_Floor");
     }
+
     public function insertFloor()
     {
-        Floor::create(['floor_number'=>'3','id_Block'=>'0']);
+        Floor::create(['floor_number' => '3', 'id_Block' => '0']);
     }
+
     public function deleteFloor()
     {
+        $id = 5;
         // ispitati da li na spratu postoji soba, ako ne moze da izbrise sprat
-        // ako sprat ima sobe
-        // izbrisati samo veze, ako se iszbrise sprat => sobama kojima je taj sprad dodeljen unsetuje se vrednst id_Floor na 0
-        $roomsOnFloor = Room::where("id_Floor",1)->get();
-        dd($roomsOnFloor);
-//        if(isset($roomsOnFloor))
-//        {
-//            return 'ima soba, nemoj da brises';
-//        }
+        // ako sprat ima sobe i ako sprat postoji
+        $roomsOnFloor = Room::where("id_Floor", $id)->get();
+        //dd($roomsOnFloor);
+        $isExistingFloor = Floor::where($this->primaryKey, $id)->get();
+        if (!$roomsOnFloor->isNotEmpty()) {
+            if ($isExistingFloor->isNotEmpty()) {
+                Floor::where($this->primaryKey, $id)->delete();
+                echo 'obrisa sam ' . $id;
+            } else {
+                echo 'vec je izbrisan';
+            }
+
+        } else {
+            echo 'nemoj da brisese';
+        }
     }
 }
