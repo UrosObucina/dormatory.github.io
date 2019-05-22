@@ -25,7 +25,6 @@ class Floor extends Model
     {
         Floor::create(['floor_number' => '3', 'id_Block' => '0']);
     }
-
     public function deleteFloor()
     {
         $id = 5;

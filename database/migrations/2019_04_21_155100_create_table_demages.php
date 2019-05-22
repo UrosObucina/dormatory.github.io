@@ -13,15 +13,15 @@ class CreateTableDemages extends Migration
      */
     public function up()
     {
-        Schema::create('demages', function (Blueprint $table) {
-            $table->bigIncrements('id_demage');
+        Schema::create('damages', function (Blueprint $table) {
+            $table->bigIncrements('id_damage');
             $table->integer("id_user");
             $table->integer("id_solved_user")->nullable();
-            $table->string("demage_type",10);
-            $table->string("demage_place",10);
-            $table->text("demage_description");
-            $table->timestamp('demage_registration');
-            $table->timestamp('demage_resolved')->nullable();
+            $table->string("damage_type",10);
+            $table->string("damage_place",10);
+            $table->text("damage_description");
+            $table->timestamp('damage_registration');
+            $table->timestamp('damage_resolved')->nullable();
             $table->tinyInteger('status');
         });
     }
@@ -33,6 +33,6 @@ class CreateTableDemages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('demages');
+        Schema::dropIfExists('damages');
     }
 }
