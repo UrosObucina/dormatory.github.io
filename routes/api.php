@@ -38,5 +38,7 @@ Route::get('/insert/floor/', 'FloorController@insertFloor');
 Route::get('/delete/floor/', 'FloorController@deleteFloor');
 // damage
 Route::get('/insert/damage/', 'DamageController@insertDamage');
+Route::get('/delete/damage/{id}', 'DamageController@deleteDamage');
+Route::get('/update/damage/', 'DamageController@updateDamage');
 Route::post('/insert/users/', 'UserController@insert');
 //SVE RUTE ZA UNOS MORAJU DA BUDU POST
