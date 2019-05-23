@@ -37,6 +37,8 @@ Route::get('/insert/block/floors/', 'BlockController@insertBlockFloors');
 Route::get('/insert/floor/', 'FloorController@insertFloor');
 Route::get('/delete/floor/', 'FloorController@deleteFloor');
 // damage
+Route::get('/get/damage/', 'DamageController@getAll');
+Route::get('/get/damage/{id}', 'DamageController@getOne');
 Route::get('/insert/damage/', 'DamageController@insertDamage');
 Route::get('/delete/damage/{id}', 'DamageController@deleteDamage');
 Route::get('/update/damage/', 'DamageController@updateDamage');

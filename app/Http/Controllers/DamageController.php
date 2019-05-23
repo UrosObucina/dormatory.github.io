@@ -14,6 +14,14 @@ class DamageController extends Controller
         $this->damage = new Damage();
     }
 
+    public function getAll()
+    {
+        return json_decode($this->damage->getAll(),true);
+    }
+    public function getOne($id)
+    {
+        return json_decode($this->damage->getOne($id),true);
+    }
     public function insertDamage()
     {
         $this->damage->insertDamage();
