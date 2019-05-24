@@ -9,24 +9,33 @@ class RoomController extends Controller
 {
     // update moze da se uradi ali kakav razmotriti jos!!
 
+    private $room;
+    public function __construct()
+    {
+        $this->room = new Room();
+    }
+    public function getAll()
+    {
+        return $this->room->getAll();
+    }
+    public function getOne($id)
+    {
+        return $this->room->getOne($id);
+    }
     public function insertRoomFloor()
     {
-        $room = new Room();
-        $room->insertRoomFloor();
-        //return 'usao';
+        $this->room->insertRoomFloor();
     }
     public function insertRoom()
     {
-        $room = new Room();
-        $room->insertRoom();
+        $this->room->insertRoom();
     }
     public function getRoom()
     {
-        $room = new Room();
-        $room->getRoom();
+        $this->room->getRoom();
     }
-    public function deleteRoom(){
-        $room = new Room();
-        $room->deleteRoom();
+    public function deleteRoom()
+    {
+        $this->room->deleteRoom();
     }
 }

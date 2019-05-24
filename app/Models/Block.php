@@ -16,6 +16,14 @@ class Block extends Model
 
     protected $fillable = ['block_Name'];
 
+    public function getAll()
+    {
+        return Block::all();
+    }
+    public function getOne($id)
+    {
+        return Block::where($this->primaryKey,$id)->first();
+    }
     public function blockFloors()
     {
         return $this->hasMany('App\Models\Floor', 'id_Block');

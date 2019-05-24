@@ -16,6 +16,15 @@ class Floor extends Model
 
     protected $fillable = ['floor_number', 'id_Block'];
 
+
+    public function getAll()
+    {
+        return Floor::all();
+    }
+    public function getOne($id)
+    {
+        return Floor::where($this->primaryKey,$id)->first();
+    }
     public function roomFloor()
     {
         return $this->hasMany('App\Models\Room', "id_Floor");

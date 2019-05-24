@@ -29,11 +29,15 @@ Route::get('/insert/room/', 'RoomController@insertRoom');
 Route::get('/get/floor/room/', 'RoomController@getRoom');
 Route::get('/delete/room/', 'RoomController@deleteRoom');
 //block
+Route::get('/get/block/', 'BlockController@getAll');
+Route::get('/get/block/{id}', 'BlockController@getOne');
 Route::get('/insert/block/', 'BlockController@insertBlock');
 Route::get('/update/block/', 'BlockController@updateBlock');
 Route::get('/delete/block/', 'BlockController@deleteBlock');
 Route::get('/insert/block/floors/', 'BlockController@insertBlockFloors');
 //floor
+Route::get('/get/floor/', 'FloorController@getAll');
+Route::get('/get/floor/{id}', 'FloorController@getOne');
 Route::get('/insert/floor/', 'FloorController@insertFloor');
 Route::get('/delete/floor/', 'FloorController@deleteFloor');
 // damage

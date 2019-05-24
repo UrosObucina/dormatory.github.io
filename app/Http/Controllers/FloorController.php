@@ -8,14 +8,25 @@ use Illuminate\Http\Request;
 class FloorController extends Controller
 {
     //
+    private $floor;
+    public function __construct()
+    {
+        $this->floor = new Floor();
+    }
+    public function getAll()
+    {
+        return $this->floor->getAll();
+    }
+    public function getOne($id)
+    {
+        return $this->floor->getOne($id);
+    }
     public function insertFloor()
     {
-        $floor = new Floor();
-        $floor->insertFloor();
+        $this->floor->insertFloor();
     }
     public function deleteFloor()
     {
-        $floor = new Floor();
-        $floor->deleteFloor();
+        $this->floor->deleteFloor();
     }
 }

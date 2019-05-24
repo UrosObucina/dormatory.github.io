@@ -8,24 +8,33 @@ use Illuminate\Http\Request;
 class BlockController extends Controller
 {
     //
+    private $block;
+    public function __construct()
+    {
+        $this->block = new Block();
+    }
+    public function getAll()
+    {
+        return $this->block->getAll();
+    }
+    public function getOne($id)
+    {
+        return $this->block->getOne($id);
+    }
     public function insertBlock()
     {
-        $block = new Block();
-        $block->insertBlock();
+        $this->block->insertBlock();
     }
     public function insertBlockFloors()
     {
-        $block = new Block();
-        $block->insertBlockFloors();
+        $this->block->insertBlockFloors();
     }
     public function updateBlock()
     {
-        $block = new Block();
-        $block->updateBlock();
+        $this->block->updateBlock();
     }
     public function deleteBlock()
     {
-        $block = new Block();
-        $block->deleteBlock();
+        $this->block->deleteBlock();
     }
 }

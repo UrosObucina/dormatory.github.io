@@ -16,6 +16,14 @@ class Room extends Model
 
     protected $fillable = ['room_number','id_Floor','id_User'];
 
+    public function getAll()
+    {
+        return Room::all();
+    }
+    public function getOne($id)
+    {
+        return Room::where($this->primaryKey,$id)->first();
+    }
     public function userRoom()
     {
         return $this->hasOne("App\Models\User",'id_Room');
