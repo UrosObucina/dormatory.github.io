@@ -17,7 +17,7 @@ class CreateTableStockMaterials extends Migration
             $table->bigIncrements('id_stock_material');
             $table->string('material_name',30);
             $table->text("material_description");
-            $table->string('material_deimension',20);
+            $table->string('material_dimension',20);
             $table->tinyInteger("material_quantity");
 
         });

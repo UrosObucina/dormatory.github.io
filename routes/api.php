@@ -46,5 +46,11 @@ Route::get('/get/damage/{id}', 'DamageController@getOne');
 Route::get('/insert/damage/', 'DamageController@insertDamage');
 Route::get('/delete/damage/{id}', 'DamageController@deleteDamage');
 Route::get('/update/damage/', 'DamageController@updateDamage');
+
+// stock
+Route::get('/insert/stock/', 'StockController@insertStock');
+Route::get('/update/stock/{id}', 'StockController@updateStock');
+Route::get('/delete/stock/{id}', 'StockController@deleteStock');
+
 Route::post('/insert/users/', 'UserController@insert');
 //SVE RUTE ZA UNOS MORAJU DA BUDU POST
