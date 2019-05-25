@@ -18,17 +18,24 @@ class DeliveryNote extends Model
 
     CONST CREATED_AT = 'publishing_date';
 
-    public $fillable = ['publishing_date','material_name','material_quantity'];
+    public $fillable = ['publishing_date', 'material_name', 'material_quantity'];
+
     public function getAll()
     {
         return DeliveryNote::all();
     }
+
     public function getOne($id)
     {
-        return DeliveryNote::where($this->primaryKey,$id)->first();
+        return DeliveryNote::where($this->primaryKey, $id)->first();
     }
+
     public function insertDeliveryNote()
     {
-        DeliveryNote::create(['material_name'=>'Ekseri','material_quantity'=>20]);
+        DeliveryNote::create(['material_name' => 'Ekseri', 'material_quantity' => 20]);
+    }
+    public function stockDelivery()
+    {
+        return $this->belongsToMany('App\Models\Stock','relation_m_n_stock_delivery','id_delivery','id_stock');
     }
 }
