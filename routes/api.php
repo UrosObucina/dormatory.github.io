@@ -52,5 +52,10 @@ Route::get('/insert/stock/', 'StockController@insertStock');
 Route::get('/update/stock/{id}', 'StockController@updateStock');
 Route::get('/delete/stock/{id}', 'StockController@deleteStock');
 
+// delivery
+Route::get('/get/delivery/', 'DeliveryNoteController@getAll');
+Route::get('/get/delivery/{id}', 'DeliveryNoteController@getOne');
+Route::get('/insert/stock/delivery/', 'DeliveryNoteController@stockDeliveryRelation');
+
 Route::post('/insert/users/', 'UserController@insert');
 //SVE RUTE ZA UNOS MORAJU DA BUDU POST
