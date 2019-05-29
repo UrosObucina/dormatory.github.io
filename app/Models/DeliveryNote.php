@@ -17,6 +17,7 @@ class DeliveryNote extends Model
     protected $primaryKey = 'id_delivery';
 
     CONST CREATED_AT = 'publishing_date';
+    CONST UPDATED_AT = NULL;
 
     public $fillable = ['publishing_date', 'material_name', 'material_quantity'];
 
@@ -28,28 +29,35 @@ class DeliveryNote extends Model
 
     public function insertDeliveryNote()
     {
-        DeliveryNote::create(['material_name' => 'Ekseri', 'material_quantity' => 20]);
+        $quantity = 1;
+        $id_material = 1;
+        //$delivery = DeliveryNote::where($this->primaryKey, 1)->first();
+        $stock = Stock::where('id_stock_material', $id_material)->first();
+        $old_quantity = $stock->material_quantity;
+        if (!empty($stock) && $stock->material_quantity > 0) {
+            $delivery = DeliveryNote::create(['material_name' => 'Ekseri', 'material_quantity' => $quantity]);
+            $stock->material_quantity = $old_quantity - $quantity;
+            $stock->save();
+            // TODO Mora da se kreira i relacija izmedju ova dva
+            $delivery->stockDelivery()->save($stock);
+            echo 'ima materiajala, moze da se napravi otpremnica';
+        } else {
+            echo 'nema materijala, zatrazi kasnije';
+        }
     }
+
     public function stockDelivery()
     {
-        return $this->belongsToMany('App\Models\Stock','relation_m_n_stock_delivery','id_delivery','id_stock');
+        return $this->belongsToMany('App\Models\Stock', 'relation_m_n_stock_delivery', 'id_delivery', 'id_stock');
     }
-    public function insertStockForDelivery()
-    {
-        $delivery = DeliveryNote::where($this->primaryKey,1)->first();
 
-        $stock = Stock::where('id_stock_material',1)->first();
-
-        $delivery->stockDelivery()->save($stock);
-    }
     public function updateDelivery()
     {
-        $delivery = DeliveryNote::where($this->primaryKey,1)->first();
+        $delivery = DeliveryNote::where($this->primaryKey, 1)->first();
 
-        if($delivery->has('stockDelivery'))
-        {
+        if ($delivery->has('stockDelivery')) {
             dd($delivery);
-        }else{
+        } else {
             echo 'ne valja ti nesto';
         }
     }

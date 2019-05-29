@@ -22,7 +22,7 @@ class DeliveryNoteController extends Controller
     {
         return json_decode($this->delivery->getOne($id),true);
     }
-    public function insertDamage()
+    public function insertDelivery()
     {
         $this->delivery->insertDeliveryNote();
     }
