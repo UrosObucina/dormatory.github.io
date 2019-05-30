@@ -27,8 +27,8 @@ class CreateUserTable extends Migration
             $table->integer('id_UserType');
             $table->string('image_name',100);
             $table->string('password',40);
-            $table->dateTime('creation_date');
-            $table->dateTime('modification_date')->nullable();
+            $table->timestamp('creation_date');
+            $table->timestamp('modification_date')->nullable();
             $table->string('college',80);
             $table->string('index_number',10);
             $table->integer('phone');

@@ -57,5 +57,5 @@ Route::get('/get/delivery/', 'DeliveryNoteController@getAll');
 Route::get('/get/delivery/{id}', 'DeliveryNoteController@getOne');
 Route::get('/insert/delivery/', 'DeliveryNoteController@insertDelivery');
 
-Route::post('/insert/users/', 'UserController@insert');
+Route::post('/insert/users/', 'UserController@insertUser');
 //SVE RUTE ZA UNOS MORAJU DA BUDU POST
