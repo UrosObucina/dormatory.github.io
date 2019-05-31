@@ -14,7 +14,7 @@ class User extends Model
     public $user;
     CONST UPDATED_AT = 'creation_date';
     CONST CREATED_AT = 'modification_date';
-    public $fillable = ['name', 'lastname', 'date_of_birth', 'gender', 'id_Room', 'id_Blokc', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'phone', 'index_number', 'creation_date', 'modification_date'];
+    public $fillable = ['name', 'date_of_birth', 'gender', 'id_Room', 'id_Block', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'lastname' , 'phone', 'index_number', 'creation_date', 'modification_date'];
 
     public function __construct()
     {
@@ -40,16 +40,35 @@ class User extends Model
 
     public function insertUser($user)
     {
-        $room = Room::where('id_Room', $user['id_Room'])->get();
-        $floor = Floor::where('id_Floor', $user['id_Floor'])->get();
-        $block = Block::where('id_Block', $user['id_Block'])->get();
+        $room = Room::where('id_Room', $user['id_Room'])->first();
+        $floor = Floor::where('id_Floor', $user['id_Floor'])->first();
+        $block = Block::where('id_Block', $user['id_Block'])->first();
 
         if (!empty($room) && !empty($floor) && !empty($block)) {
-            // TODO ovde puca nece da izvrsi upit
-            User::create(['name' => $user['name'], "lastname" => $user['lastname'], "date_of_birth" => $user['date_of_birth'], "gender" => $user['gender'], "email" => $user['email'], "id_Room" => $user['id_Room'], "id_Block" => $user['id_Block'], "id_Floor" => $user['id_Floor'], "id_Card" => $user['id_Card'], "id_UserType" => $user['id_UserType'], "image_name" => $user['image_name'], "password" => $user['password'], "college" => $user['college'], "inedex_number" => $user['index_number'], "phone" => $user['phone_number']]);
+            $inserted_user = new User();
+            $inserted_user['name'] = $user['name'];
+            $inserted_user['lastname'] = $user['lastname'];
+            $inserted_user['date_of_birth'] = $user['date_of_birth'];
+            $inserted_user['gender'] = $user['gender'];
+            $inserted_user['id_Room'] = $user['id_Room'];
+            $inserted_user['id_Floor'] = $user['id_Floor'];
+            $inserted_user['id_Block'] = $user['id_Block'];
+            $inserted_user['id_Card'] = $user['id_Card'];
+            $inserted_user['id_UserType'] = $user['id_UserType'];
+            $inserted_user['email'] = $user['email'];
+            $inserted_user['image_name'] = $user['image_name'];
+            $inserted_user['password'] = $user['password'];
+            $inserted_user['college'] = $user['college'];
+            $inserted_user['phone'] = $user['phone'];
+            $inserted_user['index_number'] = $user['index_number'];
+            $inserted_user->save();
+            // TODO kad se unese user mora da se unese u tabelu Room da ona njemu pripada
+            $room['id_User'] = $inserted_user['id_user'];
+            $room->save();
+            echo 'Usepo si!';
+        } else {
+            echo "ne mozes da unsese!";
         }
-        echo 'Usepo si!';
-
     }
 
     public function roomUser()

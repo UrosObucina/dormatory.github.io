@@ -58,7 +58,7 @@ class UserController extends Controller
         // TODO izmesti logiku u repozitori ovde pozovi fukkciju
         // TODO kad se bude unosio user mora da se unese i njegova saba sto znaci update tabele room
         $user_json = $request->json()->all();
-        //dd($user_json['name']);
+        //dd($user_json);
         $this->setUserRepository()->insertUser($user_json);
     }
     // vrati vezu user -> room
