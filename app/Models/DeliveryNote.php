@@ -27,6 +27,12 @@ class DeliveryNote extends Model
         dd($delivety->stockDelivery());
     }
 
+    public function getAll()
+    {
+        $delivety = DeliveryNote::all();
+        dd($delivety->stockDelivery());
+    }
+
     public function insertDeliveryNote()
     {
         $quantity = 1;
