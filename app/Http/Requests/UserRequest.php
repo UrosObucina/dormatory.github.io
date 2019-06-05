@@ -26,6 +26,19 @@ class UserRequest extends FormRequest
         return [
             'name' => "required|max:30",
             'lastname' => "required|max:40",
+            'date_of_birth' =>'required|max:10',
+            'gender' =>'required',
+            'id_Room' => 'required',
+            'id_Block' => 'required',
+            'id_Floor' => 'required',
+            'id_Card' => 'required',
+            'id_UserType' => 'required',
+            'email' => 'required| unique:user',
+            'image_name' => 'required',
+            'password' => 'required',
+            'college' => 'required|max:80',
+            'phone' => 'required|max:11',
+            'index_number' => 'required|max:10'
         ];
     }
 }

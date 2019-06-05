@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
@@ -57,7 +59,7 @@ class User extends Model
             $inserted_user['id_UserType'] = $user['id_UserType'];
             $inserted_user['email'] = $user['email'];
             $inserted_user['image_name'] = $user['image_name'];
-            $inserted_user['password'] = $user['password'];
+            $inserted_user['password'] = Hash::make($user['password']);
             $inserted_user['college'] = $user['college'];
             $inserted_user['phone'] = $user['phone'];
             $inserted_user['index_number'] = $user['index_number'];

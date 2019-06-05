@@ -26,7 +26,8 @@ class RoomRequest extends FormRequest
         return [
             // polja koja se nalaze u bazi
             "room_number"=>"required,max:3",
-            "id_Floor"=>"required:max:11"
+            "id_Floor"=>"required:max:11",
+            "id_User"=>'required'
         ];
     }
 }

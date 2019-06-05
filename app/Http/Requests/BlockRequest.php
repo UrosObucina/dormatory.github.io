@@ -24,7 +24,7 @@ class BlockRequest extends FormRequest
     public function rules()
     {
         return [
-            'block_Name'
+            'block_Name'=>'required'
         ];
     }
 }

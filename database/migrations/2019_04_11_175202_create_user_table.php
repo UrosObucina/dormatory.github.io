@@ -26,7 +26,7 @@ class CreateUserTable extends Migration
             $table->integer('id_Card');
             $table->integer('id_UserType');
             $table->string('image_name',100);
-            $table->string('password',40);
+            $table->string('password',90);
             $table->timestamp('creation_date');
             $table->timestamp('modification_date')->nullable();
             $table->string('college',80);

@@ -24,8 +24,8 @@ class FloorRequest extends FormRequest
     public function rules()
     {
         return [
-            'floor_Number',
-            'id_Block'
+            'floor_Number'=>'required|max:3',
+            'id_Block'=>'required'
         ];
     }
 }
