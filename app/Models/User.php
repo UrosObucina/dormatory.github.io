@@ -16,7 +16,7 @@ class User extends Model
     public $user;
     CONST UPDATED_AT = 'creation_date';
     CONST CREATED_AT = 'modification_date';
-    public $fillable = ['name', 'date_of_birth', 'gender', 'id_Room', 'id_Block', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'lastname' , 'phone', 'index_number', 'creation_date', 'modification_date'];
+    public $fillable = ['name', 'date_of_birth', 'gender', 'id_Room', 'id_Block', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'lastname', 'phone', 'index_number', 'creation_date', 'modification_date'];
 
     public function __construct()
     {
@@ -36,6 +36,7 @@ class User extends Model
 
     public function deleteOne($id)
     {
+        // TODO moras da raskines veze sa Room tabelom i da resetujes na nulu id_user u toj tabeli pri brisanju
         $this->user = User::find($id)->delete();
         return "";
     }
@@ -100,5 +101,10 @@ class User extends Model
         $room->id_Floor = 7;
         $room->save();
         return "uspeo";
+    }
+
+    public function userMaterialRequirement()
+    {
+        return $this->hasMany('App\Models\MaterialRequirement','id_user');
     }
 }

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/users/', 'UserController@getAll');
 Route::get('/users/{id}', 'UserController@getOne');
 Route::get('/delete/users/{id}', 'UserController@delete');
+Route::post('/insert/users/', 'UserController@insertUser');
 //room
 Route::get('/user/room/', 'UserController@userRoom');
 Route::get('/insert/user/room/', 'UserController@insertUserRoom');
@@ -57,5 +58,7 @@ Route::get('/get/delivery/', 'DeliveryNoteController@getAll');
 Route::get('/get/delivery/{id}', 'DeliveryNoteController@getOne');
 Route::get('/insert/delivery/', 'DeliveryNoteController@insertDelivery');
 
-Route::post('/insert/users/', 'UserController@insertUser');
-//SVE RUTE ZA UNOS MORAJU DA BUDU POST
+// material requirement
+Route::get('/insert/material/','MaterialRequirementController@insertMaterialRequirement');
+Route::get('/get/user/material/','MaterialRequirementController@getUserRequirement');
+Route::get('/delete/material/','MaterialRequirementController@delete');
