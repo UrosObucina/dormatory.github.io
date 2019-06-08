@@ -14,7 +14,7 @@ class MaterialRequirement extends Model
 {
     protected $table = 'material_requirement';
     protected $primaryKey = 'id_requirement';
-    protected $fillable = ['id_user','requiremnt_name','requirement_quantity'];
+    protected $fillable = ['id_user','requiremnt_name','requirement_quantity','status'];
 
     const CREATED_AT = NULL;
     const UPDATED_AT = NULL;
@@ -45,7 +45,7 @@ class MaterialRequirement extends Model
         $user = 1;
         $name = 'Ekser';
         $qunatity = 5;
-        $requirement = MaterialRequirement::create(['id_user'=>$user,'requiremnt_name'=>$name,'requirement_quantity'=>$qunatity]);
+        $requirement = MaterialRequirement::create(['id_user'=>$user,'requiremnt_name'=>$name,'requirement_quantity'=>$qunatity,'status'=>0]);
         // TODO upisati u veznu tabelu id zahteva i id_stock
         $stock = Stock::where('id_stock_material',$id_stock)->first();
         $requirement->materialRequirementStock()->save($stock);

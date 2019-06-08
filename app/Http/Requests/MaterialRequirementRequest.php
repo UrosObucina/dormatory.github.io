@@ -27,7 +27,8 @@ class MaterialRequirementRequest extends FormRequest
             //
             'id_user'=>'required',
             'requiremnt_name'=>'required|max:30',
-            'requirement_quantity'=>'required'
+            'requirement_quantity'=>'required',
+            'status'=>'required'
         ];
     }
 }

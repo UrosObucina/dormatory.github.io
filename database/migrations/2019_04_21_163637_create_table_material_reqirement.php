@@ -18,6 +18,7 @@ class CreateTableMaterialReqirement extends Migration
             $table->integer('id_user');
             $table->string('requiremnt_name',30);
             $table->tinyInteger('requirement_quantity');
+            $table->tinyInteger('status');
         });
     }
 
