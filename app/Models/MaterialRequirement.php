@@ -41,10 +41,14 @@ class MaterialRequirement extends Model
     }
     public function insertMaterialRequirement()
     {
+        $id_stock = 1;
         $user = 1;
         $name = 'Ekser';
         $qunatity = 5;
-        MaterialRequirement::create(['id_user'=>$user,'requiremnt_name'=>$name,'requirement_quantity'=>$qunatity]);
+        $requirement = MaterialRequirement::create(['id_user'=>$user,'requiremnt_name'=>$name,'requirement_quantity'=>$qunatity]);
+        // TODO upisati u veznu tabelu id zahteva i id_stock
+        $stock = Stock::where('id_stock_material',$id_stock)->first();
+        $requirement->materialRequirementStock()->save($stock);
         echo 'Uneo sam zahtev';
     }
     //dohvati za odredjenog usera sve zahteve
@@ -53,5 +57,9 @@ class MaterialRequirement extends Model
         $id = 1;
         $requirement = MaterialRequirement::where('id_user',$id)->get();
         return $requirement;
+    }
+    public function materialRequirementStock()
+    {
+        return $this->belongsToMany('App\Models\Stock','relation_n_m_material_stock','id_material','id_stock');
     }
 }

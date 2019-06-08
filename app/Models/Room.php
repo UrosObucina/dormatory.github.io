@@ -28,6 +28,10 @@ class Room extends Model
     {
         return $this->hasOne("App\Models\User",'id_Room');
     }
+    public function roomFloor()
+    {
+        return $this->hasMany("App\Models\Floor",'id_Floor');
+    }
 //    public function floorRoom()
 //    {
 //        return $this->hasOne("App\Models\Floor");
