@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class User extends Model
 {
@@ -106,5 +107,13 @@ class User extends Model
     public function userMaterialRequirement()
     {
         return $this->hasMany('App\Models\MaterialRequirement','id_user');
+    }
+    public function login()
+    {
+        $email = 'petar.peric@gmail.com';
+        $password = 'pera1234';
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            dd("usao sam ");die;
+    }
     }
 }
