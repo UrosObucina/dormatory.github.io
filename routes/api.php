@@ -63,3 +63,17 @@ Route::get('/insert/delivery/', 'DeliveryNoteController@insertDelivery');
 Route::get('/insert/material/','MaterialRequirementController@insertMaterialRequirement');
 Route::get('/get/user/material/','MaterialRequirementController@getUserRequirement');
 Route::get('/delete/material/','MaterialRequirementController@delete');
+
+Route::group([
+
+    //'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
