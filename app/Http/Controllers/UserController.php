@@ -77,8 +77,9 @@ class UserController extends Controller
         $user = new User();
         $user->updateUserRoom();
     }
-    public function login()
+    public function login(Request $request)
     {
-        $this->setUserRepository()->login();
+        $user = $this->setUserRepository()->login($request);
+        return $user;
     }
 }

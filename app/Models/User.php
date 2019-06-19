@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use http\Env\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use mysql_xdevapi\Session;
 
 class User extends Model
 {
@@ -106,14 +108,26 @@ class User extends Model
 
     public function userMaterialRequirement()
     {
-        return $this->hasMany('App\Models\MaterialRequirement','id_user');
+        return $this->hasMany('App\Models\MaterialRequirement', 'id_user');
     }
-    public function login()
+
+    /**
+     * @param Request $request
+     */
+    public function login($request)
     {
         $email = 'petar.peric@gmail.com';
         $password = 'pera1234';
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            dd("usao sam ");die;
-    }
+        $user = User::where('email', $email)->first();
+        if (Hash::check($password, $user['password'])) {
+            try {
+                return $user['id_user'];
+                // TODO api za logovanje mora da ima token("informacije o korisniku") cimer stvalja podatke u lokal storage
+            } catch (Exception $e) {
+                return $e;
+            }
+        } else {
+            echo 'Pa i ne bas';
+        }
     }
 }

@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // ovde se pisu rute i drugacije se pozivaju JSON /api/users/ example
-Route::get('/users/', 'UserController@getAll');
+Route::get('/users/', 'UserController@getAll')->middleware('student');
 Route::get('/users/{id}', 'UserController@getOne');
 Route::get('/delete/users/{id}', 'UserController@delete');
 Route::post('/user/login', 'UserController@login');

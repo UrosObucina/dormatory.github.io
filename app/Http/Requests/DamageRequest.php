@@ -31,6 +31,7 @@ class DamageRequest extends FormRequest
             'damage_description' => 'required',
             'damage_registration'=> 'required',
             'status'=>'required|max:4'
+
         ];
     }
 }
