@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
-    //
     /**
      * Create a new AuthController instance.
      *
@@ -27,6 +26,7 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
+
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

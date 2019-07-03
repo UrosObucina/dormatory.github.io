@@ -26,12 +26,12 @@ class Room extends Model
     }
     public function userRoom()
     {
-        return $this->hasOne("App\Models\User",'id_Room');
+        return $this->hasMany("App\Models\User",'id_Room');
     }
-//    public function floorRoom()
-//    {
-//        return $this->hasOne("App\Models\Floor");
-//    }
+    public function floorRoom()
+    {
+        return $this->belongsTo("App\Models\Floor");
+    }
     public function insertRoomFloor()
     {
         $floor = Floor::findOrFail(1);

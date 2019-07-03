@@ -29,7 +29,10 @@ class Floor extends Model
     {
         return $this->hasMany('App\Models\Room', "id_Floor");
     }
-
+    public function blockFloor()
+    {
+        return $this->belongsTo('App\Models\Block');
+    }
     public function insertFloor()
     {
         Floor::create(['floor_number' => '3', 'id_Block' => '0']);

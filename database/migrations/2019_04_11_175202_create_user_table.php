@@ -32,8 +32,8 @@ class CreateUserTable extends Migration
             $table->string('college',80);
             $table->string('index_number',10);
             $table->integer('phone');
-            $table->text('token');
-            $table->text('refresh_token');
+            $table->text('token')->nullable();
+            $table->text('refresh_token')->nullable();
         });
     }
 

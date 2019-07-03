@@ -10,31 +10,37 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use mysql_xdevapi\Session;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-class User extends Model implements JWTSubject
+
+class User extends Model implements Authenticatable, JWTSubject
 {
-    //
     //use Notifiable;
+    use AuthenticableTrait;
     protected $primaryKey = "id_user";
 
     protected $table = 'user';
     public $user;
     CONST UPDATED_AT = 'creation_date';
     CONST CREATED_AT = 'modification_date';
-    public $fillable = ['name', 'date_of_birth', 'gender', 'id_Room', 'id_Block', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'lastname', 'phone', 'index_number', 'creation_date', 'modification_date'];
+    public $fillable = ['name', 'date_of_birth', 'gender', 'id_Room', 'id_Block', 'id_Floor', 'id_Card', 'id_UserType', 'email', 'image_name', 'password', 'college', 'lastname', 'phone', 'index_number', 'creation_date', 'modification_date', 'token', 'refresh_token'];
 
     public function __construct()
     {
     }
+
     // JWT implementation
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];
     }
+
     public function getAll()
     {
         $this->user = User::all();
@@ -119,25 +125,5 @@ class User extends Model implements JWTSubject
     public function userMaterialRequirement()
     {
         return $this->hasMany('App\Models\MaterialRequirement', 'id_user');
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function login($request)
-    {
-        $email = 'petar.peric@gmail.com';
-        $password = 'pera1234';
-        $user = User::where('email', $email)->first();
-        if (Hash::check($password, $user['password'])) {
-            try {
-                return $user['id_user'];
-                // TODO api za logovanje mora da ima token("informacije o korisniku") cimer stvalja podatke u lokal storage
-            } catch (Exception $e) {
-                return $e;
-            }
-        } else {
-            echo 'Pa i ne bas';
-        }
     }
 }

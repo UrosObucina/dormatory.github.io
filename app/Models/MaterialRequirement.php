@@ -62,4 +62,8 @@ class MaterialRequirement extends Model
     {
         return $this->belongsToMany('App\Models\Stock','relation_n_m_material_stock','id_material','id_stock');
     }
+    public function userMaterialReq()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
