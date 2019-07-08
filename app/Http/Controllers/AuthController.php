@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -30,7 +31,10 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
+        $user = User::where('email',$credentials['email'])->first();
+        $user->token = $token;
+        $user->save();
+        // TODO ovde treba neka redirekcija ili nesto
         return $this->respondWithToken($token);
     }
 
