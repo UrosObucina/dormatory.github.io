@@ -24,7 +24,7 @@ class Damage extends Model
     }
     public function damageUsers()
     {
-        return $this->hasMany('App\Models\User', 'id_user');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function insertDamage()

@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\Redirect;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class StudentMiddleware
+class RepairmanMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
         $user = User::where("token", $request->header('Authorization'))->first();
         JWTAuth::setToken($user->token);
@@ -26,7 +26,7 @@ class StudentMiddleware
         $apy = JWTAuth::getPayload($token)->toArray();
         $response = '';
         $now = time();
-        if ($user['id_UserType'] == 2 && isset($token)) {
+        if ($user['id_UserType'] == 3 && isset($token)) {
             return $next($request);
         } else {
             return response()->json(['message' => 'You are not authorized to access.']);

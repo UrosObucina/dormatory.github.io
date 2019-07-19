@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -34,7 +35,6 @@ class AuthController extends Controller
         $user = User::where('email',$credentials['email'])->first();
         $user->token = $token;
         $user->save();
-        // TODO ovde treba neka redirekcija ili nesto
         return $this->respondWithToken($token);
     }
 

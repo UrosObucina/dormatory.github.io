@@ -17,16 +17,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // ovde se pisu rute i drugacije se pozivaju JSON /api/users/ example
+Route::group(['middleware' => ['student']], function () {
 Route::get('/users/', 'UserController@getAll')->middleware('student');
 Route::get('/users/{id}', 'UserController@getOne');
 Route::get('/delete/users/{id}', 'UserController@delete');
 Route::post('/user/login', 'UserController@login');
 Route::post('/insert/users/', 'UserController@insertUser');
+});
 //room
 Route::get('/user/room/', 'UserController@userRoom');
 Route::get('/insert/user/room/', 'UserController@insertUserRoom');
 Route::get('/update/user/room/', 'UserController@updateUserRoom');
 Route::get('/insert/floor/room/', 'RoomController@insertRoomFloor');
+Route::get('/room/', 'RoomController@getAll')->middleware('repairman');
 Route::get('/insert/room/', 'RoomController@insertRoom');
 Route::get('/get/floor/room/', 'RoomController@getRoom');
 Route::get('/delete/room/', 'RoomController@deleteRoom');
